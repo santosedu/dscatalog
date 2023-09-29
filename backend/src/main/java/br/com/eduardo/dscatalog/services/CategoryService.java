@@ -39,5 +39,12 @@ public class CategoryService {
         PageRequest request = PageRequest.of(page, size, Sort.Direction.ASC, "name");
         return repository.search(searchTerm.toLowerCase(), request);
     }
+    @Transactional
+    public CategoryDTO insert(CategoryDTO dto) {
+        Category entity = new Category();
+        entity.setName(dto.getName());
 
+        repository.save(entity);
+        return new CategoryDTO(entity);
+    }
 }
