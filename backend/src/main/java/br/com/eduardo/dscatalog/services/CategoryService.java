@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,5 +41,15 @@ public class CategoryService {
     public Page<Category> search(String searchTerm, int page, int size) {
         PageRequest request = PageRequest.of(page, size, Sort.Direction.ASC, "name");
         return repository.search(searchTerm.toLowerCase(), request);
+    }
+
+    public CategoryDTO findBYId(Long id) {
+        Category entity = new Category();
+        Optional<Category> obj = repository.findById(id);
+        if(obj.isPresent()) {
+            entity = obj.get();
+        }
+        return new CategoryDTO(entity);
+
     }
 }
