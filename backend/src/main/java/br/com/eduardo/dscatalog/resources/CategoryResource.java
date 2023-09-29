@@ -42,6 +42,12 @@ public class CategoryResource {
         return ResponseEntity.created(uri).body(dto);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<CategoryDTO> update(@PathVariable ("id") Long id, @RequestBody CategoryDTO dto) {
+        CategoryDTO obj = service.update(id, dto);
+        return  ResponseEntity.ok().body(obj);
+    }
+
     @GetMapping("/search")
     public Page<Category> search(@RequestParam("searchTerm") String searchTerm,
                                  @RequestParam(value = "page",
