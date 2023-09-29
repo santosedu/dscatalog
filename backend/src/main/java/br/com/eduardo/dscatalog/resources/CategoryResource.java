@@ -1,5 +1,6 @@
 package br.com.eduardo.dscatalog.resources;
 
+import br.com.eduardo.dscatalog.dto.CategoryDTO;
 import br.com.eduardo.dscatalog.entities.Category;
 import br.com.eduardo.dscatalog.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +21,9 @@ public class CategoryResource {
     private CategoryService service;
 
     @GetMapping
-    public ResponseEntity<Page<Category>> listAll() {
-        Page<Category> list = service.findAll();
-        return ResponseEntity.ok((Page<Category>) list);
+    public ResponseEntity<List<CategoryDTO>> listAll() {
+        List<CategoryDTO> list = service.findAll();
+        return ResponseEntity.ok().body(list);
     }
 
     @GetMapping("/search")
