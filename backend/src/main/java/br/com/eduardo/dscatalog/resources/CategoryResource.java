@@ -48,6 +48,11 @@ public class CategoryResource {
         return  ResponseEntity.ok().body(obj);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable ("id") Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
     @GetMapping("/search")
     public Page<Category> search(@RequestParam("searchTerm") String searchTerm,
                                  @RequestParam(value = "page",
