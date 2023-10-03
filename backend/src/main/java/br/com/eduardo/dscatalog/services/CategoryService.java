@@ -73,4 +73,9 @@ public class CategoryService {
             throw new DatabaseException("Integrity violation");
         }
     }
+
+    public Page<CategoryDTO> findAllPaged(PageRequest pageRequest) {
+        Page<Category> categories = repository.findAll(pageRequest);
+        return categories.map(CategoryDTO::new);
+    }
 }
