@@ -16,6 +16,4 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     Page<Product> search(
             @Param("searchTerm") String searchTerm,
             Pageable pageable);
-
-//    Page<Category> listSorted(Long id, Pageable pageable);
 }
